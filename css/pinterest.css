@@ -1,0 +1,25 @@
+html,body,p{
+	margin: 0;
+	padding: 0;
+}
+html{
+	font-family: '微软雅黑';
+	background-color: #eee;
+}
+#container{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	background-color: #eee;
+}
+.imgBox{
+	padding: 8px;
+	width: auto;
+	border-radius: 4px;
+	background-color: #fff;
+}
+
+.imgBox p{
+	font-size: 16px;
+	text-align: center;
+}
