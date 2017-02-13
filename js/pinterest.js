@@ -38,7 +38,7 @@ var pinterest = {
 			_page.appendImg(_page.col[i], i);
 			_page.container.appendChild(_page.col[i]);
 		}
-
+		_page.checkColumn();
 	},
 	//在添加图片
 	appendImg: function(dom, imgIndex){
@@ -54,7 +54,8 @@ var pinterest = {
 	},
 	// 检测哪一列需要添加
 	checkColumn: function(){
-
+		var _page = this;
+		alert(_page.col[2].lastChild.getBoundingClientRect().bottom);
 	},
 	// 根据浏览器大小分列数
 	divide: function(){
