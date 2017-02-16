@@ -3,6 +3,8 @@ var pinterest = {
 	container: document.getElementById("container"),
 	// 图片地址
 	imgUrls: {},
+	// 图片index
+	imgIndex: 0,
 	// 列数
 	col: [],
 	// 默认参数
@@ -41,11 +43,15 @@ var pinterest = {
 		_page.checkColumn();
 	},
 	//在添加图片
-	appendImg: function(dom, imgIndex){
+	appendImg: function(dom){
 		var _page = this;
 		var imgBox = document.createElement("div");
+		if(_page.imgIndex > 160){
+			return;
+		}
 		imgBox.className = "imgBox";
-		imgBox.innerHTML = '<img width='+(_page.default.width - 32)+' src = '+_page.imgUrls[imgIndex]+'><p>'+imgIndex+'<p>';
+		imgBox.innerHTML = '<img width='+(_page.default.width - 32)+' src = '+_page.imgUrls[_page.imgIndex]+'><p>'+_page.imgIndex+'<p>';
+		_page.imgIndex++;
 		dom.appendChild(imgBox);
 	},
 	// 监测滚动状态
@@ -55,7 +61,22 @@ var pinterest = {
 	// 检测哪一列需要添加
 	checkColumn: function(){
 		var _page = this;
-		alert(_page.col[2].lastChild.getBoundingClientRect().bottom);
+		var scrollH = document.body.scrollHeight;
+		var flag = 0;
+		while(flag != _page.col.length){
+			for(var i = 0; i < _page.col.length; i++){
+				console.log(_page.col[i].lastChild.getBoundingClientRect().bottom);
+		    	console.log(document.body.scrollHeight);
+				if(_page.col[i].lastChild.getBoundingClientRect().bottom < document.body.scrollHeight){
+					_page.appendImg(_page.col[i])
+				}else{
+					flag++
+				}
+			}
+			flag = (flag == _page.col.length) ? flag : 0;
+		}
+		
+
 	},
 	// 根据浏览器大小分列数
 	divide: function(){
@@ -76,5 +97,4 @@ var pinterest = {
 	}
 
 }
-console.log(1);
 pinterest.init();
