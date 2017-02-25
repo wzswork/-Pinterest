@@ -7,12 +7,14 @@ html{
 	background-color: #eee;
 }
 #container{
-	display: flex;
-	justify-content: space-between;
 	width: 100%;
 	background-color: #eee;
 }
+#container > div{
+	float: left;
+}
 .imgBox{
+	margin: 4px 8px;
 	padding: 8px;
 	width: auto;
 	border-radius: 4px;
